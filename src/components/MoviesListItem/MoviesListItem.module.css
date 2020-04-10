@@ -1,0 +1,47 @@
+.img {
+    width: 300px;
+    height: 355px;
+    object-fit: cover;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+.name {
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 10px;
+    width: 90%;
+    color: #fff;
+    font-family: 'Roboto';
+    font-size: 1.2rem;
+    position: absolute;
+    background: rgba(95, 155, 150, 0.8);
+    left: 10px;
+    bottom: 10px;
+    transition: color 200ms linear;
+}
+
+.rate {
+    font-family: 'Roboto';
+    font-weight: 500;
+    position: absolute;
+    text-align: center;
+    padding: 5px 10px;
+    background: #77c1bb;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #000;
+    top: 15px;
+    right: 15px;
+}
+
+@media screen and (min-width: 1024px) {
+    .name {
+        font-size: 1rem;
+    }
+
+    .name:hover,
+    .name:focus {
+        color: #e6fd63;
+    }
+}

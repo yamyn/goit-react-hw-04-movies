@@ -1,0 +1,58 @@
+{
+    "name": "goit-react-hw-04-movies",
+    "version": "0.1.0",
+    "private": true,
+    "homepage": "https://yamyn.github.io/goit-react-hw-04-movies",
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "commit": "npx git-cz",
+        "eject": "react-scripts eject",
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d build"
+    },
+    "dependencies": {
+        "@testing-library/jest-dom": "4.2.4",
+        "@testing-library/react": "9.5.0",
+        "@testing-library/user-event": "7.2.1",
+        "material-design-icons": "^3.0.1",
+        "react": "16.13.1",
+        "react-dom": "16.13.1",
+        "react-loader-spinner": "^3.1.5",
+        "react-scripts": "3.4.1"
+    },
+    "devDependencies": {
+        "commitizen": "4.0.3",
+        "cz-conventional-changelog": "3.1.0",
+        "eslint": "6.8.0",
+        "eslint-config-airbnb": "18.1.0",
+        "eslint-config-airbnb-base": "14.1.0",
+        "eslint-config-prettier": "6.10.1",
+        "eslint-plugin-import": "2.20.2",
+        "eslint-plugin-node": "11.1.0",
+        "eslint-plugin-prettier": "3.1.2",
+        "gh-pages": "2.2.0",
+        "prop-types": "15.7.2"
+    },
+    "eslintConfig": {
+        "extends": "react-app"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "config": {
+        "commitizen": {
+            "path": "./node_modules/cz-conventional-changelog"
+        }
+    }
+}

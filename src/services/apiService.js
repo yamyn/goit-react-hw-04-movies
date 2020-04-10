@@ -1,0 +1,125 @@
+const baseUrl = 'https://api.themoviedb.org/3/';
+const apiKey = '?api_key=168af0fe4d819af69af0e65f181d8d99';
+
+export default {
+    API_KEY: '',
+    page: 1,
+    _query: '',
+
+    updatePage() {
+        this.page += 1;
+    },
+
+    downgradePage() {
+        if (!this.page || this.page === 1) return;
+        this.page -= 1;
+    },
+
+    resetPage() {
+        this.page = 1;
+    },
+
+    get currentPage() {
+        return this.page;
+    },
+
+    get query() {
+        return this._query;
+    },
+
+    set query(newQuery) {
+        this._query = newQuery;
+    },
+
+    async getPopularMovies() {
+        const response = await fetch(
+            `${baseUrl}movie/popular${apiKey}&language=en-US&page=${this.page}&region=UA`,
+        );
+        const data = await response.json();
+        return data.results.map(item => ({
+            imageURL:
+                item.poster_path === null
+                    ? 'https://consaltliga.com.ua/wp-content/themes/consultix/images/no-image-found-360x250.png'
+                    : `https://image.tmdb.org/t/p/w500${item.poster_path}`,
+            title: item.title,
+            vote: item.vote_average,
+            date:
+                item.release_date !== ''
+                    ? `(${item.release_date.split('-')[0]})`
+                    : '',
+            id: item.id,
+            originalTitle: item.original_title,
+        }));
+    },
+
+    async getMovie(id) {
+        const response = await fetch(
+            `${baseUrl}movie/${id}${apiKey}&language=en-US`,
+        );
+        const data = await response.json();
+        return {
+            imageURL:
+                data.poster_path === null
+                    ? 'https://consaltliga.com.ua/wp-content/themes/consultix/images/no-image-found-360x250.png'
+                    : `https://image.tmdb.org/t/p/w500${data.poster_path}`,
+            genres: data.genres
+                .map(item => {
+                    return item.name.toLowerCase();
+                })
+                .join(', '),
+            title: data.title,
+            originalTitle: data.original_title,
+            overview: data.overview,
+            vote: data.vote_average,
+            votes: data.vote_count,
+            date:
+                data.release_date !== ''
+                    ? `(${data.release_date.split('-')[0]})`
+                    : '',
+            popularity: data.popularity,
+            id: data.id,
+        };
+    },
+
+    async getWatchedMovie(id) {
+        const response = await fetch(
+            `${baseUrl}movie/${id}${apiKey}&language=en-US`,
+        );
+        const data = await response.json();
+        return {
+            imageURL:
+                data.poster_path === null
+                    ? 'https://consaltliga.com.ua/wp-content/themes/consultix/images/no-image-found-360x250.png'
+                    : `https://image.tmdb.org/t/p/w500${data.poster_path}`,
+            title: data.title,
+            vote: data.vote_average,
+        };
+    },
+
+    async getSearchedMovie() {
+        if (!this._query) {
+            return this.getPopularMovies();
+        }
+
+        const response = await fetch(
+            `${baseUrl}search/movie${apiKey}&language=en-US&query=${this._query
+                .split(' ')
+                .join('+')}&page=${this.page}&region=UA`,
+        );
+        const data = await response.json();
+        return data.results.map(item => ({
+            imageURL:
+                item.poster_path === null
+                    ? 'https://consaltliga.com.ua/wp-content/themes/consultix/images/no-image-found-360x250.png'
+                    : `https://image.tmdb.org/t/p/w500${item.poster_path}`,
+            original_title: item.original_title,
+            title: item.title,
+            date:
+                item.release_date !== ''
+                    ? `(${item.release_date.split('-')[0]})`
+                    : '',
+            vote: item.vote_average,
+            id: item.id,
+        }));
+    },
+};

@@ -1,0 +1,49 @@
+.wrap {
+    background: rgb(6, 4, 69);
+    background: linear-gradient(
+        90deg,
+        rgba(6, 4, 69, 1) 0%,
+        rgba(30, 65, 101, 1) 31%,
+        rgba(43, 99, 111, 1) 100%
+    );
+    position: relative;
+}
+
+.header {
+    padding: 20px 0;
+    height: 180px;
+}
+
+.logo {
+    width: 250px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 10px;
+    background-color: rgb(39, 92, 105);
+    border-radius: 20px;
+    transition: transform 200ms linear;
+}
+
+.logo:hover,
+.logo:focus {
+    transform: scale(1.05, 1.05);
+}
+
+.link {
+    transition: color 200ms linear;
+    color: #fff;
+    font-family: 'Kaushan Script';
+    font-size: 32px;
+    &:hover,
+    &:focus {
+        color: #e6fd63;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .header {
+        height: 120px;
+        flex-flow: row;
+        align-items: center;
+    }
+}

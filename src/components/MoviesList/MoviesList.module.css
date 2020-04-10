@@ -1,0 +1,44 @@
+.list {
+    padding-top: 20px;
+}
+
+.item {
+    position: relative;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    background-color: #e6e6e6;
+    cursor: pointer;
+    transition: transform 200ms linear;
+}
+
+.item:hover,
+.item:focus {
+    transform: scale(1.05, 1.05);
+}
+
+@media screen and (min-width: 1024px) {
+    .list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding-top: 20px;
+    }
+
+    .list:nth-child(4n) {
+        margin-right: 0;
+    }
+
+    .item {
+        flex: 0 0 24%;
+        position: relative;
+        margin-bottom: 12px;
+    }
+}
+
+.not-found {
+    padding-top: 15px;
+    text-align: center;
+    &_p {
+        margin-bottom: 30px;
+    }
+}

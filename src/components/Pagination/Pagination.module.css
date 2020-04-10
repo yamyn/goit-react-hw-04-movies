@@ -1,0 +1,47 @@
+.pagination {
+    text-align: center;
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pageCount {
+    flex: 0 0 20%;
+    max-width: 70px;
+}
+
+.button {
+    position: relative;
+    border: 0;
+    flex: 0 0 35%;
+    max-width: 200px;
+    cursor: pointer;
+    transition: transform 300ms linear;
+}
+
+.button:hover,
+.button:focus {
+    color: #275c69;
+    transform: translateX(-5%);
+}
+
+.next:hover,
+.next:focus {
+    transform: translateX(5%);
+}
+
+.pageCount,
+.button {
+    border: 1px solid #c8d1d1;
+    border-radius: 5px;
+    height: 40px;
+    font-size: 22px;
+    line-height: 40px;
+    font-weight: bold;
+    color: #556270;
+    outline: none;
+    background-color: #f3f6f6;
+    font-family: 'Droid Sans';
+}
