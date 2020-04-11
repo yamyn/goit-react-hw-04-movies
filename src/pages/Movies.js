@@ -27,7 +27,7 @@ export default class MoviesPage extends Component {
     fetchMovies = query => {
         if (query) {
             moviesApi.resetPage();
-            moviesApi._query = query;
+            moviesApi.query = query;
         }
         moviesApi
             .getSearchedMovie()
@@ -37,6 +37,13 @@ export default class MoviesPage extends Component {
 
                     return;
                 }
+
+                if (res.length === 1) {
+                    const { history } = this.props;
+                    const id = res[0].id;
+                    history.push(`/movies/${id}`);
+                }
+
                 this.setState(state => ({
                     movies: [...res],
                     isNotFound: false,

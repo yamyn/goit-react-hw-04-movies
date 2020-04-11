@@ -1,12 +1,13 @@
 .main {
     font-family: 'Roboto';
-    padding-bottom: 20px;
+    padding-bottom: 12px;
 }
 
 .poster {
     width: 100%;
     padding-top: 20px;
     margin-bottom: 20px;
+    box-shadow: 0 0 10px #00000080;
 }
 
 .about {
@@ -28,9 +29,11 @@
 }
 
 .sectionTitle {
-    font-weight: 500;
-    font-size: 1.5rem;
     margin-bottom: 16px;
+    font-weight: bold;
+    font-size: 1.5rem;
+    font-family: 'Kaushan Script';
+    color: #3b3838;
 }
 
 .table {
@@ -38,7 +41,7 @@
     margin-bottom: 20px;
     color: #000;
     border-collapse: collapse;
-    width: 100%;
+    box-shadow: 0 0 10px #00000080;
 }
 
 .col1 {
@@ -47,6 +50,10 @@
 
 .table td {
     padding: 6px 14px;
+}
+
+.table tbody tr {
+    background-color: #867e7e;
 }
 
 .table tr:nth-child(2n + 1) {

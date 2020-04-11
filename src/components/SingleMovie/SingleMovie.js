@@ -28,26 +28,29 @@ const Movie = ({
                 {title} {date}
             </h2>
             <table className={table}>
-                <tr>
-                    <td className={col1}>vote/votes</td>
-                    <td>
-                        {vote}/{votes}
-                    </td>
-                </tr>
-                <tr>
-                    <td className={col1}>popularity</td>
-                    <td>{popularity}</td>
-                </tr>
-                <tr>
-                    <td className={col1}>original title</td>
-                    <td>{title}</td>
-                </tr>
-                <tr>
-                    <td className={col1} valign="top">
-                        genre
-                    </td>
-                    <td>{genres}</td>
-                </tr>
+                <thead></thead>
+                <tbody>
+                    <tr>
+                        <td className={col1}>vote/votes</td>
+                        <td>
+                            {vote}/{votes}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td className={col1}>popularity</td>
+                        <td>{popularity}</td>
+                    </tr>
+                    <tr>
+                        <td className={col1}>original title</td>
+                        <td>{title}</td>
+                    </tr>
+                    <tr>
+                        <td className={col1} valign="top">
+                            genre
+                        </td>
+                        <td>{genres}</td>
+                    </tr>
+                </tbody>
             </table>
             <h2 className={about}>About</h2>
             <p className={description}>{overview}</p>

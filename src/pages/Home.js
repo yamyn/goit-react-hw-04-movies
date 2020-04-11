@@ -14,6 +14,7 @@ export default class HomePage extends Component {
     };
 
     componentDidMount() {
+        moviesApi.resetPage();
         this.fetchMovies();
     }
 
@@ -27,7 +28,6 @@ export default class HomePage extends Component {
     }
 
     fetchMovies = () => {
-        moviesApi.resetPage();
         moviesApi
             .getPopularMovies()
             .then(res => {
