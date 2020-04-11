@@ -53,10 +53,11 @@ export default {
     },
 
     async getMovie(id) {
-        const response = await fetch(
-            `${baseUrl}movie/${id}${apiKey}&language=en-US`,
-        );
+        const path = `${baseUrl}movie/${id}${apiKey}&language=en-US`;
+        console.log(path);
+        const response = await fetch(path);
         const data = await response.json();
+        console.log(data);
         return {
             imageURL:
                 data.poster_path === null

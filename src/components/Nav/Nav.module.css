@@ -1,0 +1,36 @@
+.list {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    text-transform: uppercase;
+}
+
+.item {
+    background-color: rgb(71, 131, 141);
+    border-radius: 5px;
+}
+
+.link {
+    display: block;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    padding: 10px 20px;
+    font-size: 24px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.item {
+    transition: transform 200ms linear;
+}
+
+.item:hover,
+.item:focus {
+    transform: scale(1.05, 1.05);
+}
+
+@media screen and (min-width: 1024px) {
+    .navigation {
+        flex-grow: 0.1;
+    }
+}

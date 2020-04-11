@@ -1,36 +1,19 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
 
-import moviesApi from '../../services/apiService';
-import mapper from '../../helpers/mapper';
+import moviesApi from '../services/apiService';
 
-import styles from './App.module.css';
+import MoviesList from '../components/MoviesList/MoviesList';
+import Pagination from '../components/Pagination/Pagination';
+import Searchbar from '../components/Searchbar/Searchbar';
+import Main from '../components/Main/Main';
+import Notification from '../components/Notification/Notification';
 
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
-
-//Pages
-import HomePage from '../../pages/Home';
-import MoviesPage from '../../pages/Movies';
-import MovieDetailsPage from '../../pages/Movie';
-
-import MoviesList from '../MoviesList/MoviesList';
-import Searchbar from '../Searchbar/Searchbar';
-import Loader from '../Loader/Loader';
-import Pagination from '../Pagination/Pagination';
-import Notification from '../Notification/Notification';
-import Main from '../Main/Main';
-
-export default class App extends Component {
+export default class MoviesPage extends Component {
     state = {
         movies: [],
         isLoading: false,
         isNotFound: false,
     };
-
-    componentDidMount() {
-        this.fetchMovies();
-    }
 
     componentDidUpdate(prevProps, prevState) {
         if (moviesApi.currentPage > 1) {
@@ -74,28 +57,14 @@ export default class App extends Component {
         this.fetchMovies();
     };
 
-    goOnHome = event => {
-        event.preventDefault();
-        moviesApi.query = '';
-        moviesApi.resetPage();
-        this.fetchMovies();
-    };
-
     render() {
         const { movies, isLoading, isNotFound } = this.state;
         const page = moviesApi.currentPage;
         return (
             <>
-                <Header onClick={this.goOnHome} />
-                <Switch>
-                    <Route path="/" exact component={HomePage} />
-                    <Route
-                        path="/movies/:movieId"
-                        exact
-                        component={MovieDetailsPage}
-                    />
-                    <Route path="/movies" exact component={MoviesPage} />
-                    {/* <Main message="Popular movies">
+                <Searchbar onSubmit={this.fetchMovies} />
+                {movies.length > 0 && (
+                    <Main message={`Movies for "${moviesApi.query}"`}>
                         {isNotFound ? (
                             <Notification message="Movies for your query not found" />
                         ) : (
@@ -108,9 +77,8 @@ export default class App extends Component {
                                 />
                             </>
                         )}
-                    </Main> */}
-                </Switch>
-                <Footer />
+                    </Main>
+                )}
             </>
         );
     }

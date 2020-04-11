@@ -12,11 +12,13 @@
 .header {
     padding: 20px 0;
     height: 180px;
+    display: flex;
+    justify-content: space-between;
+    flex-flow: column;
 }
 
 .logo {
     width: 250px;
-    margin: 0 auto;
     text-align: center;
     padding: 10px;
     background-color: rgb(39, 92, 105);
@@ -34,10 +36,11 @@
     color: #fff;
     font-family: 'Kaushan Script';
     font-size: 32px;
-    &:hover,
-    &:focus {
-        color: #e6fd63;
-    }
+}
+
+.link:hover,
+.link:focus {
+    color: #e6fd63;
 }
 
 @media screen and (min-width: 1024px) {

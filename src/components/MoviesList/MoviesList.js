@@ -11,6 +11,7 @@ const MoviesList = ({ movies }) => {
                 ({ id, title, date, vote, imageURL, originalTitle }) => (
                     <li key={id} className={item}>
                         <ImageGalleryItem
+                            id={id}
                             title={title}
                             date={date}
                             vote={vote}
