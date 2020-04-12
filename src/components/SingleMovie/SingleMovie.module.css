@@ -60,6 +60,30 @@
     background: #addad6;
 }
 
+.btnWrap {
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+}
+
+.btn {
+    position: relative;
+    flex: 0 0 35%;
+    width: 45%;
+    border: 1px solid #c8d1d1;
+    border-radius: 5px;
+    height: 40px;
+    font-size: 22px;
+    line-height: 40px;
+    font-weight: bold;
+    color: #556270;
+    outline: none;
+    background-color: #f3f6f6;
+    font-family: 'Droid Sans';
+    cursor: pointer;
+    text-decoration: none;
+}
+
 @media screen and (min-width: 1024px) {
     .main {
         display: flex;
@@ -83,5 +107,9 @@
 
     .sectionTitle {
         font-size: 2rem;
+    }
+    .reviews {
+        width: 320px;
+        align-self: center;
     }
 }

@@ -59,6 +59,7 @@ export default class HomePage extends Component {
     render() {
         const { movies, isLoading, isNotFound } = this.state;
         const page = moviesApi.currentPage;
+
         return (
             <Main message="Popular movies">
                 <MoviesList movies={movies} />

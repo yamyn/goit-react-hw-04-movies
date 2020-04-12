@@ -28,7 +28,6 @@ export default class SearchBar extends Component {
         return (
             <section className={section}>
                 <div className="container">
-                    >
                     <form className={form} onSubmit={this.handleSubmit}>
                         <div className={wrap}>
                             <div>

@@ -1,4 +1,6 @@
 import React from 'react';
+import { NavLink, withRouter } from 'react-router-dom';
+
 import {
     main,
     poster,
@@ -8,7 +10,14 @@ import {
     col1,
     about,
     description,
+    btn,
+    btnWrap,
+    reviews,
 } from './SingleMovie.module.css';
+
+const ativeStyle = {
+    color: '#275c69',
+};
 
 const Movie = ({
     title,
@@ -20,8 +29,9 @@ const Movie = ({
     overview,
     imageURL,
     originalTitle,
+    match,
 }) => (
-    <main className={`${main} container`}>
+    <div className={`${main} container`}>
         <img className={poster} src={imageURL} alt={originalTitle} />
         <section className={section}>
             <h2 className={sectionTitle}>
@@ -54,8 +64,26 @@ const Movie = ({
             </table>
             <h2 className={about}>About</h2>
             <p className={description}>{overview}</p>
+            <div className={btnWrap}>
+                <NavLink
+                    to={`${match.url}/cast`}
+                    exact
+                    activeStyle={ativeStyle}
+                    className={btn}
+                >
+                    Cast
+                </NavLink>
+                <NavLink
+                    to={`${match.url}/reviews`}
+                    exact
+                    activeStyle={ativeStyle}
+                    className={`${btn} ${reviews}`}
+                >
+                    Reviews
+                </NavLink>
+            </div>
         </section>
-    </main>
+    </div>
 );
 
-export default Movie;
+export default withRouter(Movie);

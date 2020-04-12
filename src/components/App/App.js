@@ -91,10 +91,9 @@ export default class App extends Component {
                     <Route path="/" exact component={HomePage} />
                     <Route
                         path="/movies/:movieId"
-                        exact
                         component={MovieDetailsPage}
                     />
-                    <Route path="/movies" exact component={MoviesPage} />
+                    <Route path="/movies" component={MoviesPage} />
                     {/* <Main message="Popular movies">
                         {isNotFound ? (
                             <Notification message="Movies for your query not found" />

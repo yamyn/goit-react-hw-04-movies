@@ -1,0 +1,16 @@
+.figure {
+    background: #5f6a72;
+    padding: 10px;
+    display: block;
+    width: 100%;
+    margin: 0 10px 10px 0;
+    text-align: center;
+    height: 100%;
+}
+.figcaption {
+    color: #fff;
+}
+
+.imgWrap {
+    height: 238px;
+}

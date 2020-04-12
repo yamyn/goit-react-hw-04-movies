@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Nav from '../Nav/Nav';
 import { wrap, header, logo, link } from './Header.module.css';
 
-const Header = ({ onClick }) => {
+const Header = () => {
     const menu = ['Home', 'Movies'];
     return (
         <div className={wrap}>
@@ -19,10 +19,6 @@ const Header = ({ onClick }) => {
             </header>
         </div>
     );
-};
-
-Header.propTypes = {
-    onClick: PropTypes.func.isRequired,
 };
 
 export default Header;
