@@ -17,8 +17,8 @@ const Header = ({ items }) => (
     </nav>
 );
 
-// Header.propTypes = {
-//     onClick: PropTypes.func.isRequired,
-// };
+Header.propTypes = {
+    items: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
 
 export default Header;

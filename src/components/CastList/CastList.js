@@ -18,8 +18,15 @@ const CastList = ({ actors }) => (
     </ul>
 );
 
-// Header.propTypes = {
-//     onClick: PropTypes.func.isRequired,
-// };
+CastList.propTypes = {
+    actors: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            name: PropTypes.string.isRequired,
+            character: PropTypes.string.isRequired,
+            imageURL: PropTypes.string.isRequired,
+        }),
+    ).isRequired,
+};
 
 export default CastList;

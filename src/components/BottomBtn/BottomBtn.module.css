@@ -1,0 +1,29 @@
+.wrap {
+    height: 70px;
+    padding-top: 10px;
+}
+
+.button {
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+    height: 40px;
+    border: 1px solid #c8d1d1;
+    border-radius: 5px;
+    font-size: 22px;
+    line-height: 40px;
+    font-weight: bold;
+    color: #556270;
+    outline: none;
+    background-color: #f3f6f6;
+    font-family: 'Droid Sans';
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 200ms linear;
+}
+
+.button:hover,
+.button:focus {
+    color: #275c69;
+    transform: scale(1.05, 1.05);
+}

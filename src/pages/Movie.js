@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import Movie from '../components/SingleMovie/SingleMovie';
+import ButtomBtn from '../components/BottomBtn/BottomBtn';
+
 import moviesApi from '../services/apiService';
 import CastListPage from './Cast';
 import ReviewsPage from './Reviews';
@@ -23,18 +25,22 @@ export default class MovieDetailsPage extends Component {
             return history.push(location.state.from);
         }
 
-        history.push('/movies');
+        history.push('/');
     };
 
     render() {
         const { movie } = this.state;
-        const { path, url } = this.props.match;
+        const { path } = this.props.match;
 
         return (
             <main>
                 <Movie {...movie} />
                 <Route path={`${path}/cast`} component={CastListPage} />
                 <Route path={`${path}/reviews`} component={ReviewsPage} />
+                <ButtomBtn
+                    text={'Go To the list'}
+                    onClick={this.handleGoback}
+                />
             </main>
         );
     }

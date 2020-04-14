@@ -1,26 +1,16 @@
 import React, { Component } from 'react';
+import queryString from 'query-string';
 
 import moviesApi from '../services/apiService';
+import reviewListMapper from '../helpers/reviewListMapper';
+
 import Review from '../components/Review/Review';
 import Pagination from '../components/Pagination/Pagination';
 import DescriptionWrap from '../components/DescriptionWrap/DescriptionWrap';
 import Notification from '../components/Notification/Notification';
 
 const getIdFromProps = props => props.match.params.movieId;
-const generateActorsObj = arr => {
-    const actorsObj = {};
-    arr.reduce((acc, obj, i) => {
-        if (!(i % 5)) {
-            acc += 1;
-            actorsObj[`${acc}`] = [];
-            actorsObj.pageCount = acc;
-            actorsObj.length = arr.length;
-        }
-        actorsObj[`${acc}`].push(obj);
-        return acc;
-    }, 0);
-    return actorsObj;
-};
+const getPageFromProps = props => queryString.parse(props.location.search).page;
 
 export default class ReviewsPage extends Component {
     state = {
@@ -30,13 +20,27 @@ export default class ReviewsPage extends Component {
     };
 
     componentDidMount() {
-        this.setState({ page: 1 });
         const id = getIdFromProps(this.props);
-        console.log(id);
+        const page = getPageFromProps(this.props);
+        if (page) {
+            this.setState({
+                page: Number(page),
+            });
+        }
+
         this.fetchMovies(id);
     }
 
     componentDidUpdate(prevProps, prevState) {
+        const prevPage = getPageFromProps(prevProps);
+        const nextPage = getPageFromProps(this.props);
+
+        if (prevPage !== nextPage) {
+            this.setState({
+                page: Number(nextPage),
+            });
+        }
+
         if (this.state.page === 1 && prevState.page !== 2) {
             window.scrollTo({
                 top: 550,
@@ -46,37 +50,39 @@ export default class ReviewsPage extends Component {
     }
 
     fetchMovies = id => {
-        moviesApi.getReviews(id).then(res => {
-            if (res.length === 0) {
+        moviesApi.getReviews(id).then(data => {
+            if (data.results.length === 0) {
                 this.setState({ isNotFound: true });
 
                 return;
             }
-            console.log(res);
+
+            const transformData = reviewListMapper(data);
             this.setState({
-                reviews: res,
+                reviews: transformData,
                 isNotFound: false,
             });
         });
     };
 
-    getPrevPage = () => {
-        this.setState(prevState => {
-            if (prevState.page > 1) {
-                return { page: prevState.page - 1 };
-            }
-            return;
+    urlUpdate = newPage => {
+        this.props.history.push({
+            pathname: this.props.location.pathname,
+            search: `page=${newPage}`,
         });
     };
 
+    getPrevPage = () => {
+        const oldpage = getPageFromProps(this.props);
+        const newPage = Number(oldpage) - 1;
+        if (oldpage > 1) this.urlUpdate(newPage);
+    };
+
     getNextPage = () => {
-        this.setState(prevState => {
-            const pageCount = prevState.reviews.length;
-            if (prevState.page !== pageCount) {
-                return { page: prevState.page + 1 };
-            }
-            return;
-        });
+        const oldPage = getPageFromProps(this.props);
+        const pageCount = this.state.reviews.length;
+        const newPage = oldPage ? Number(oldPage) + 1 : 2;
+        if (newPage !== pageCount) this.urlUpdate(newPage);
     };
 
     render() {

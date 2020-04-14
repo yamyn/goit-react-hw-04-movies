@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import { p } from './Review.module.css';
 
 const Review = ({ info }) => (
@@ -12,11 +11,7 @@ const Review = ({ info }) => (
     </>
 );
 
-{
-    /* ImageGalleryItem.propTypes = {
-    src: PropTypes.string.isRequired,
-    alt: PropTypes.string,
-}; */
-}
-
+Review.propTypes = {
+    info: PropTypes.string.isRequired,
+};
 export default Review;

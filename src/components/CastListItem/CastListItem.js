@@ -14,11 +14,10 @@ const CastListItem = ({ name, character, src }) => (
     </figure>
 );
 
-{
-    /* ImageGalleryItem.propTypes = {
+CastListItem.propTypes = {
     src: PropTypes.string.isRequired,
-    alt: PropTypes.string,
-}; */
-}
+    name: PropTypes.string.isRequired,
+    character: PropTypes.string.isRequired,
+};
 
 export default CastListItem;

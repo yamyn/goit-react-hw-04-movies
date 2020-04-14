@@ -82,6 +82,12 @@
     font-family: 'Droid Sans';
     cursor: pointer;
     text-decoration: none;
+    transition: transform 200ms linear;
+}
+
+.btn:hover,
+.btn:focus {
+    transform: scale(1.05, 1.05);
 }
 
 @media screen and (min-width: 1024px) {

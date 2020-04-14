@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import moviesApi from '../services/apiService';
+import listMoviesMapper from '../helpers/listMoviesMapper';
 
 import MoviesList from '../components/MoviesList/MoviesList';
 import Pagination from '../components/Pagination/Pagination';
@@ -9,8 +10,6 @@ import Main from '../components/Main/Main';
 export default class HomePage extends Component {
     state = {
         movies: [],
-        isLoading: false,
-        isNotFound: false,
     };
 
     componentDidMount() {
@@ -28,22 +27,12 @@ export default class HomePage extends Component {
     }
 
     fetchMovies = () => {
-        moviesApi
-            .getPopularMovies()
-            .then(res => {
-                if (res.length === 0) {
-                    this.setState({ isNotFound: true });
-
-                    return;
-                }
-                this.setState(state => ({
-                    movies: [...res],
-                    isNotFound: false,
-                }));
-            })
-            .finally(() => {
-                this.setState({ isLoading: false });
-            });
+        moviesApi.getPopularMovies().then(data => {
+            const transformData = listMoviesMapper(data);
+            this.setState(state => ({
+                movies: [...transformData],
+            }));
+        });
     };
 
     getPrevPage = () => {
@@ -57,7 +46,7 @@ export default class HomePage extends Component {
     };
 
     render() {
-        const { movies, isLoading, isNotFound } = this.state;
+        const { movies } = this.state;
         const page = moviesApi.currentPage;
 
         return (

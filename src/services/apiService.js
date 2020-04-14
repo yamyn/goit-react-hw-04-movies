@@ -19,6 +19,10 @@ export default {
         this.page = 1;
     },
 
+    set currentPage(newPage) {
+        this.page = newPage;
+    },
+
     get currentPage() {
         return this.page;
     },
@@ -35,20 +39,7 @@ export default {
         const path = `${baseUrl}movie/popular${apiKey}&language=en-US&page=${this.page}&region=UA`;
         const response = await fetch(path);
         const data = await response.json();
-        return data.results.map(item => ({
-            imageURL:
-                item.poster_path === null
-                    ? 'https://consaltliga.com.ua/wp-content/themes/consultix/images/no-image-found-360x250.png'
-                    : `https://image.tmdb.org/t/p/w500${item.poster_path}`,
-            title: item.title,
-            vote: item.vote_average,
-            date:
-                item.release_date !== ''
-                    ? `(${item.release_date.split('-')[0]})`
-                    : '',
-            id: item.id,
-            originalTitle: item.original_title,
-        }));
+        return data;
     },
 
     async getMovie(id) {
@@ -100,26 +91,14 @@ export default {
 
         const response = await fetch(path);
         const data = await response.json();
-        return data.cast.map(item => ({
-            imageURL:
-                item.profile_path === null
-                    ? 'https://consaltliga.com.ua/wp-content/themes/consultix/images/no-image-found-360x250.png'
-                    : `https://image.tmdb.org/t/p/w500${item.profile_path}`,
-            name: item.name,
-            character: item.character,
-            id: item.id,
-        }));
+        return data;
     },
 
     async getReviews(id) {
         const path = `${baseUrl}movie/${id}/reviews${apiKey}&language=en-US`;
         const response = await fetch(path);
         const data = await response.json();
-        return data.results.map(item => ({
-            content: item.content,
-            author: item.author,
-            id: item.id,
-        }));
+        return data;
     },
 
     async getSearchedMovie() {
@@ -131,20 +110,6 @@ export default {
             .join('+')}&page=${this.page}&region=UA`;
         const response = await fetch(path);
         const data = await response.json();
-        console.log(path);
-        return data.results.map(item => ({
-            imageURL:
-                item.poster_path === null
-                    ? 'https://consaltliga.com.ua/wp-content/themes/consultix/images/no-image-found-360x250.png'
-                    : `https://image.tmdb.org/t/p/w500${item.poster_path}`,
-            originalTitle: item.original_title,
-            title: item.title,
-            date:
-                item.release_date !== ''
-                    ? `(${item.release_date.split('-')[0]})`
-                    : '',
-            vote: item.vote_average,
-            id: item.id,
-        }));
+        return data;
     },
 };
