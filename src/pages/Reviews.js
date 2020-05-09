@@ -80,7 +80,7 @@ export default class ReviewsPage extends Component {
 
     getNextPage = () => {
         const oldPage = getPageFromProps(this.props);
-        const pageCount = this.state.reviews.length;
+        const pageCount = this.state.reviews.length + 1;
         const newPage = oldPage ? Number(oldPage) + 1 : 2;
         if (newPage !== pageCount) this.urlUpdate(newPage);
     };
@@ -88,17 +88,21 @@ export default class ReviewsPage extends Component {
     render() {
         const { reviews, page } = this.state;
         const review = reviews[page - 1];
-
+        console.log(reviews);
         return (
             <>
                 {reviews.length > 0 ? (
                     <DescriptionWrap message={`Written by @${review.author}`}>
                         <Review info={review.content} />
-                        <Pagination
-                            onClickPrev={this.getPrevPage}
-                            onClickNext={this.getNextPage}
-                            page={page}
-                        />
+                        {reviews.length !== 1 ? (
+                            <Pagination
+                                onClickPrev={this.getPrevPage}
+                                onClickNext={this.getNextPage}
+                                page={page}
+                            />
+                        ) : (
+                            <Notification message="Only one reviews for this movie" />
+                        )}
                     </DescriptionWrap>
                 ) : (
                     <DescriptionWrap message="Woooooops!">

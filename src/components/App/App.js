@@ -7,19 +7,18 @@ import Footer from '../Footer/Footer';
 import Loader from '../Loader/Loader';
 
 //Pages
-import HomePage from '../../pages/Home';
-import MoviesPage from '../../pages/Movies';
-import MovieDetailsPage from '../../pages/Movie';
-
 const AsyncHomePage = lazy(() => import('../../pages/Home'));
+const AsyncMoviesPage = lazy(() => import('../../pages/Movies'));
+const AsyncDetailsPage = lazy(() => import('../../pages/Movie'));
+
 const App = () => (
     <>
         <Header />
         <Suspense fallback={<Loader />}>
             <Switch>
                 <Route path="/" exact component={AsyncHomePage} />
-                <Route path="/movies/:movieId" component={MovieDetailsPage} />
-                <Route path="/movies" component={MoviesPage} />
+                <Route path="/movies/:movieId" component={AsyncDetailsPage} />
+                <Route path="/movies" component={AsyncMoviesPage} />
             </Switch>
         </Suspense>
         <Footer />

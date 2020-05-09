@@ -1,11 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component, lazy, Suspense } from 'react';
 import { Route } from 'react-router-dom';
+
+//Static Components
 import Movie from '../components/SingleMovie/SingleMovie';
 import ButtomBtn from '../components/BottomBtn/BottomBtn';
+import Loader from '../components/Loader/Loader';
 
 import moviesApi from '../services/apiService';
-import CastListPage from './Cast';
-import ReviewsPage from './Reviews';
+
+//Pages
+const AsyncCastListPage = lazy(() => import('./Cast'));
+const AsyncReviewsPage = lazy(() => import('./Reviews'));
 
 const getIdFromProps = props => props.match.params.movieId;
 
@@ -35,8 +40,16 @@ export default class MovieDetailsPage extends Component {
         return (
             <main>
                 <Movie {...movie} />
-                <Route path={`${path}/cast`} component={CastListPage} />
-                <Route path={`${path}/reviews`} component={ReviewsPage} />
+                <Suspense fallback={<Loader />}>
+                    <Route
+                        path={`${path}/cast`}
+                        component={AsyncCastListPage}
+                    />
+                    <Route
+                        path={`${path}/reviews`}
+                        component={AsyncReviewsPage}
+                    />
+                </Suspense>
                 <ButtomBtn
                     text={'Go To the list'}
                     onClick={this.handleGoback}
