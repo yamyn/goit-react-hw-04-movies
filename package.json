@@ -2,7 +2,6 @@
     "name": "goit-react-hw-04-movies",
     "version": "0.1.0",
     "private": true,
-    "homepage": "https://yamyn.github.io/goit-react-hw-04-movies",
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
@@ -10,7 +9,7 @@
         "commit": "npx git-cz",
         "eject": "react-scripts eject",
         "predeploy": "npm run build",
-        "deploy": "gh-pages -d build"
+        "deploy": "netlify deploy -p"
     },
     "dependencies": {
         "@testing-library/jest-dom": "4.2.4",
