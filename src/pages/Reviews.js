@@ -88,7 +88,6 @@ export default class ReviewsPage extends Component {
     render() {
         const { reviews, page } = this.state;
         const review = reviews[page - 1];
-        console.log(reviews);
         return (
             <>
                 {reviews.length > 0 ? (
