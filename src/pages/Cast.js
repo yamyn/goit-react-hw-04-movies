@@ -78,7 +78,7 @@ export default class CastListPage extends Component {
 
     getNextPage = () => {
         const oldPage = getPageFromProps(this.props);
-        const pageCount = this.state.actors.pageCount;
+        const { pageCount } = this.state.actors;
         const newPage = oldPage ? Number(oldPage) + 1 : 2;
         if (newPage !== pageCount) this.urlUpdate(newPage);
     };

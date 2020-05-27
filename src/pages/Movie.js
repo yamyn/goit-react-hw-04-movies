@@ -1,14 +1,14 @@
 import React, { Component, lazy, Suspense } from 'react';
 import { Route } from 'react-router-dom';
 
-//Static Components
+// Static Components
 import Movie from '../components/SingleMovie/SingleMovie';
 import ButtomBtn from '../components/BottomBtn/BottomBtn';
 import Loader from '../components/Loader/Loader';
 
 import moviesApi from '../services/apiService';
 
-//Pages
+// Pages
 const AsyncCastListPage = lazy(() => import('./Cast'));
 const AsyncReviewsPage = lazy(() => import('./Reviews'));
 
@@ -50,10 +50,7 @@ export default class MovieDetailsPage extends Component {
                         component={AsyncReviewsPage}
                     />
                 </Suspense>
-                <ButtomBtn
-                    text={'Go To the list'}
-                    onClick={this.handleGoback}
-                />
+                <ButtomBtn text="Go To the list" onClick={this.handleGoback} />
             </main>
         );
     }

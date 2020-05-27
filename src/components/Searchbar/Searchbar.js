@@ -24,7 +24,7 @@ export default class SearchBar extends Component {
     };
 
     render() {
-        const query = this.state.query;
+        const { query } = this.state;
         return (
             <section className={section}>
                 <div className="container">

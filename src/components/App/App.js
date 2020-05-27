@@ -1,14 +1,16 @@
 import React, { lazy, Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-//Static Components
+// Static Components
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Loader from '../Loader/Loader';
 
-//Pages
-const AsyncHomePage = lazy(() => import('../../pages/Home'));
-const AsyncMoviesPage = lazy(() => import('../../pages/Movies'));
+// Pages
+const AsyncHomePage = lazy(() => import('../../pages/Home/HomeContainer'));
+const AsyncMoviesPage = lazy(() =>
+    import('../../pages/Movies/MoviesContainer'),
+);
 const AsyncDetailsPage = lazy(() => import('../../pages/Movie'));
 
 const App = () => (

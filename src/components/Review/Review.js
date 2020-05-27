@@ -5,7 +5,7 @@ import { p } from './Review.module.css';
 const Review = ({ info }) => (
     <>
         <p className={p}>
-            <span></span>
+            <span />
             {info}
         </p>
     </>

@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { link } from './Nav.module.css';
+
 const ativeStyle = {
     color: '#e6fd63',
 };

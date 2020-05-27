@@ -4,7 +4,7 @@ const apiKey = '?api_key=168af0fe4d819af69af0e65f181d8d99';
 export default {
     API_KEY: '',
     page: 1,
-    _query: '',
+    localQuery: '',
 
     updatePage() {
         this.page += 1;
@@ -28,11 +28,11 @@ export default {
     },
 
     get query() {
-        return this._query;
+        return this.localQuery;
     },
 
     set query(newQuery) {
-        this._query = newQuery;
+        this.localQuery = newQuery;
     },
 
     async getPopularMovies() {
@@ -102,10 +102,10 @@ export default {
     },
 
     async getSearchedMovie() {
-        if (!this._query) {
+        if (!this.localQuery) {
             return this.getPopularMovies();
         }
-        const path = `${baseUrl}search/movie${apiKey}&language=en-US&query=${this._query
+        const path = `${baseUrl}search/movie${apiKey}&language=en-US&query=${this.localQuery
             .split(' ')
             .join('+')}&page=${this.page}&region=UA`;
         const response = await fetch(path);

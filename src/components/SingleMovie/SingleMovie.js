@@ -38,7 +38,7 @@ const Movie = ({
                 {title} {date}
             </h2>
             <table className={table}>
-                <thead></thead>
+                <thead />
                 <tbody>
                     <tr>
                         <td className={col1}>vote/votes</td>
